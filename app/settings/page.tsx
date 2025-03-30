@@ -22,16 +22,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-// import { useToast } from "@/components/ui/use-toast";
 import { generatePortfolioData } from "@/lib/data";
 
 export default function SettingsPage() {
-  // const { toast } = useToast();
 
   const handleExportCSV = () => {
     const { assets } = generatePortfolioData();
-    
-    // Convert assets to CSV format
+
     const headers = ["Name", "Ticker", "Category", "Shares", "Price", "Value", "Change"];
     const rows = assets.map(asset => [
       asset.name,
@@ -57,21 +54,11 @@ export default function SettingsPage() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
-    // toast({
-    //   title: "Export Successful",
-    //   description: "Portfolio data has been exported to CSV",
-    // });
   };
 
   const handleClearData = () => {
     // Clear local storage
     localStorage.clear();
-    
-    // toast({
-    //   title: "Data Cleared",
-    //   description: "All portfolio data has been reset",
-    // });
   };
 
   return (

@@ -13,7 +13,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
-// import { useToast } from "@/components/ui/use-toast";
 
 const COLORS = {
   stocks: "hsl(var(--chart-1))",
@@ -23,7 +22,6 @@ const COLORS = {
 };
 
 export default function AllocationPage() {
-  // const { toast } = useToast();
   const { assets } = generatePortfolioData();
   const [targetAllocations, setTargetAllocations] = useState({
     stocks: 60,
@@ -63,11 +61,6 @@ export default function AllocationPage() {
     // Validate total allocation equals 100%
     const totalAllocation = Object.values(targetAllocations).reduce((sum, value) => sum + value, 0);
     if (Math.abs(totalAllocation - 100) > 0.01) {
-      // toast({
-      //   title: "Invalid Allocation",
-      //   description: "Total allocation must equal 100%",
-      //   variant: "destructive",
-      // });
       setIsRebalancing(false);
       return;
     }
@@ -85,27 +78,6 @@ export default function AllocationPage() {
 
     // Simulate rebalancing delay
     await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Show success message with trade summary
-    // toast({
-    //   title: "Portfolio Rebalanced",
-    //   description: (
-    //     <div className="mt-2 space-y-2">
-    //       {trades.map(({ category, difference }) => (
-    //         <div key={category} className="flex justify-between text-sm">
-    //           <span className="capitalize">{category}:</span>
-    //           <span className={difference >= 0 ? "text-green-500" : "text-red-500"}>
-    //             {new Intl.NumberFormat("en-US", {
-    //               style: "currency",
-    //               currency: "USD",
-    //               maximumFractionDigits: 0,
-    //             }).format(difference)}
-    //           </span>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   ),
-    // });
 
     setIsRebalancing(false);
   };
